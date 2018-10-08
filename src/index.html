@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue hello</title>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/jgthms/minireset.css/master/minireset.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="./base.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<style>
+		/* resets */
+* { color: inherit; }
+/*input { font: inherit; border: unset; background: unset; }*/
+/*input:focus { outline: unset; }*/
+
+#app {
+	display: flex;
+	flex-direction: column; justify-content: center; align-items: center;
+	width: 100vw; min-height: 100vh;
+	font-weight: normal; font-size: 1rem;
+	color: hsl(0, 0%, 100%);
+	background: hsl(240, 100%, 67%);
+	font-family: 'Roboto', sans-serif;
+}
+#app tr {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	width: 100%;
+	margin-bottom: 50px;
+}
+#app thead td {
+	width: 16.5%;
+	cursor: pointer;
+	border: 1px solid #000;
+	font-size: 1rem;
+	padding: 5px 10px;
+	box-sizing: border-box;
+}
+#app td {
+	display: block;
+	margin-right: 40px;
+	width: calc(20% - 40px);
+}
+#app .table2 td {
+	width: 33%;
+}
+table {
+	width: 80%;
+}
+input { text-align: center; }
+
+img {
+	width: 2rem; height: 8rem;
+	vertical-align: calc(-0.12109375em);
+}
+input, select {
+	color: #000;
+	width: 100%;
+}
+button {
+	color: #000;
+}
+	</style>
+
+<script>
+// используется только для генерации ID новой задачи
+	var MD5 = function(d){result = M(V(Y(X(d),8*d.length)));return result.toLowerCase()};function M(d){for(var _,m="0123456789ABCDEF",f="",r=0;r<d.length;r++)_=d.charCodeAt(r),f+=m.charAt(_>>>4&15)+m.charAt(15&_);return f}function X(d){for(var _=Array(d.length>>2),m=0;m<_.length;m++)_[m]=0;for(m=0;m<8*d.length;m+=8)_[m>>5]|=(255&d.charCodeAt(m/8))<<m%32;return _}function V(d){for(var _="",m=0;m<32*d.length;m+=8)_+=String.fromCharCode(d[m>>5]>>>m%32&255);return _}function Y(d,_){d[_>>5]|=128<<_%32,d[14+(_+64>>>9<<4)]=_;for(var m=1732584193,f=-271733879,r=-1732584194,i=271733878,n=0;n<d.length;n+=16){var h=m,t=f,g=r,e=i;f=md5_ii(f=md5_ii(f=md5_ii(f=md5_ii(f=md5_hh(f=md5_hh(f=md5_hh(f=md5_hh(f=md5_gg(f=md5_gg(f=md5_gg(f=md5_gg(f=md5_ff(f=md5_ff(f=md5_ff(f=md5_ff(f,r=md5_ff(r,i=md5_ff(i,m=md5_ff(m,f,r,i,d[n+0],7,-680876936),f,r,d[n+1],12,-389564586),m,f,d[n+2],17,606105819),i,m,d[n+3],22,-1044525330),r=md5_ff(r,i=md5_ff(i,m=md5_ff(m,f,r,i,d[n+4],7,-176418897),f,r,d[n+5],12,1200080426),m,f,d[n+6],17,-1473231341),i,m,d[n+7],22,-45705983),r=md5_ff(r,i=md5_ff(i,m=md5_ff(m,f,r,i,d[n+8],7,1770035416),f,r,d[n+9],12,-1958414417),m,f,d[n+10],17,-42063),i,m,d[n+11],22,-1990404162),r=md5_ff(r,i=md5_ff(i,m=md5_ff(m,f,r,i,d[n+12],7,1804603682),f,r,d[n+13],12,-40341101),m,f,d[n+14],17,-1502002290),i,m,d[n+15],22,1236535329),r=md5_gg(r,i=md5_gg(i,m=md5_gg(m,f,r,i,d[n+1],5,-165796510),f,r,d[n+6],9,-1069501632),m,f,d[n+11],14,643717713),i,m,d[n+0],20,-373897302),r=md5_gg(r,i=md5_gg(i,m=md5_gg(m,f,r,i,d[n+5],5,-701558691),f,r,d[n+10],9,38016083),m,f,d[n+15],14,-660478335),i,m,d[n+4],20,-405537848),r=md5_gg(r,i=md5_gg(i,m=md5_gg(m,f,r,i,d[n+9],5,568446438),f,r,d[n+14],9,-1019803690),m,f,d[n+3],14,-187363961),i,m,d[n+8],20,1163531501),r=md5_gg(r,i=md5_gg(i,m=md5_gg(m,f,r,i,d[n+13],5,-1444681467),f,r,d[n+2],9,-51403784),m,f,d[n+7],14,1735328473),i,m,d[n+12],20,-1926607734),r=md5_hh(r,i=md5_hh(i,m=md5_hh(m,f,r,i,d[n+5],4,-378558),f,r,d[n+8],11,-2022574463),m,f,d[n+11],16,1839030562),i,m,d[n+14],23,-35309556),r=md5_hh(r,i=md5_hh(i,m=md5_hh(m,f,r,i,d[n+1],4,-1530992060),f,r,d[n+4],11,1272893353),m,f,d[n+7],16,-155497632),i,m,d[n+10],23,-1094730640),r=md5_hh(r,i=md5_hh(i,m=md5_hh(m,f,r,i,d[n+13],4,681279174),f,r,d[n+0],11,-358537222),m,f,d[n+3],16,-722521979),i,m,d[n+6],23,76029189),r=md5_hh(r,i=md5_hh(i,m=md5_hh(m,f,r,i,d[n+9],4,-640364487),f,r,d[n+12],11,-421815835),m,f,d[n+15],16,530742520),i,m,d[n+2],23,-995338651),r=md5_ii(r,i=md5_ii(i,m=md5_ii(m,f,r,i,d[n+0],6,-198630844),f,r,d[n+7],10,1126891415),m,f,d[n+14],15,-1416354905),i,m,d[n+5],21,-57434055),r=md5_ii(r,i=md5_ii(i,m=md5_ii(m,f,r,i,d[n+12],6,1700485571),f,r,d[n+3],10,-1894986606),m,f,d[n+10],15,-1051523),i,m,d[n+1],21,-2054922799),r=md5_ii(r,i=md5_ii(i,m=md5_ii(m,f,r,i,d[n+8],6,1873313359),f,r,d[n+15],10,-30611744),m,f,d[n+6],15,-1560198380),i,m,d[n+13],21,1309151649),r=md5_ii(r,i=md5_ii(i,m=md5_ii(m,f,r,i,d[n+4],6,-145523070),f,r,d[n+11],10,-1120210379),m,f,d[n+2],15,718787259),i,m,d[n+9],21,-343485551),m=safe_add(m,h),f=safe_add(f,t),r=safe_add(r,g),i=safe_add(i,e)}return Array(m,f,r,i)}function md5_cmn(d,_,m,f,r,i){return safe_add(bit_rol(safe_add(safe_add(_,d),safe_add(f,i)),r),m)}function md5_ff(d,_,m,f,r,i,n){return md5_cmn(_&m|~_&f,d,_,r,i,n)}function md5_gg(d,_,m,f,r,i,n){return md5_cmn(_&f|m&~f,d,_,r,i,n)}function md5_hh(d,_,m,f,r,i,n){return md5_cmn(_^m^f,d,_,r,i,n)}function md5_ii(d,_,m,f,r,i,n){return md5_cmn(m^(_|~f),d,_,r,i,n)}function safe_add(d,_){var m=(65535&d)+(65535&_);return(d>>16)+(_>>16)+(m>>16)<<16|65535&m}function bit_rol(d,_){return d<<_|d>>>32-_}
+// END используется только для генерации ID новой задачи
+</script>
+
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var app = new Vue({
+			el: "#app",
+			data: {
+				taskVue: JSON.parse(JSON.stringify(tasks)),
+				usersVue: users,
+				taskStates: [],
+
+				newTaskName: "",
+				newTaskPers: users[0].id,
+				newTaskTime: 1,
+
+				editButtonNames: ["Редактировать", "Сохранить"],
+				editButtonState: 0,
+
+				sortStates: {
+					sortByName: 0,
+					sortByUser: 0,
+					sortByTime: 0,
+					sortByPrice: 0
+				},
+				isAppChange: false
+			},
+			methods: {
+				infoById: function(id, whatKindOf) {	// по ID сотрудника находим выводим необходимые данные ( имя, стоимость работ)
+					var name = "------";
+					var price = "------";
+
+					for (var i=0; i<this.usersVue.length; i++) {
+						if ( this.usersVue[i].id == id) {
+							name = this.usersVue[i].name;
+							price = this.usersVue[i].price;							
+						}
+					}
+					if ( whatKindOf == 1 ) {
+						return name;
+					}
+					if ( whatKindOf == 2 ) {
+						return price;
+					}
+				},
+				createTask: function() {	// создаем новую задачу
+					this.taskVue.push({id: MD5(new Date().getTime() + this.newTaskName), name: this.newTaskName, user_id: this.newTaskPers, time: this.newTaskTime });
+
+					// Сбрасываем поля по- умолчанию
+					this.newTaskName = "";
+					this.newTaskPers = users[0].id;
+					this.newTaskTime = 1;
+
+					this.createTaskStates();
+					this.isAppChange = true;
+				},
+				deleteTask: function(task_id) {	// удаляем задачу по клику на кнопку удалить
+					if (confirm("Уверены, что хотите удалить задачу?")) {
+						for ( var i=0; i<this.taskVue.length;i++) {
+						if ( this.taskVue[i].id == task_id ) {
+							// console.log(i);
+							this.taskVue.splice(i , 1);
+							this.createTaskStates();
+							console.log("Задача удалена успешно");
+						}
+					}
+					}
+				},
+				editTask: function(task_id) {	// нажимаем редактировать задачу
+					var currentTaskNum = "";
+					for (var i=0; i< this.taskStates.length; i++) {
+						console.log(this.taskStates[i].id);
+						if ( this.taskStates[i].id == task_id ) currentTaskNum = i;
+					}
+
+					if (this.taskStates[currentTaskNum].state == 0) {	// нажали редактировать
+						this.taskStates[currentTaskNum].state = 1;
+					} else {											// нажали сохранить
+						this.taskStates[currentTaskNum].state = 0;
+					}
+
+				},
+				createTaskStates: function() {	// создаем массив, где у каждой id задачи есть state
+					var arr= [];
+					for (var i=0; i<this.taskVue.length; i++) {
+						arr.push({id: this.taskVue[i].id, state: 0});
+					}
+					this.taskStates = arr;
+				},
+				stateById: function(id) {	// выводим State задачи, зная ее ID
+					for (var i=0; i< this.taskStates.length; i++) {
+						if (this.taskStates[i].id == id) return this.taskStates[i].state;
+					}
+				},
+				clearAllSorts: function() {	// сбрасывем нажатые ранее сортировки
+					for (var key in this.sortStates) {
+						this.sortStates[key] = 0;
+					}
+				},
+				sortByHours: function() {
+					if (this.sortStates.sortByTime == 0) {	// нажали первый раз
+						this.clearAllSorts();
+						this.sortStates.sortByTime = 1;
+						this.taskVue.sort(function(a,b){return a.time < b.time;});
+					} else {	// в обратном порядке
+						this.clearAllSorts();
+						this.taskVue.sort(function(a,b){return a.time > b.time;});
+					}
+					
+				},
+				sortByName: function() {
+					if (this.sortStates.sortByName == 0) { // нажали первый раз
+						this.clearAllSorts();
+						this.sortStates.sortByName = 1;
+						this.taskVue.sort(function(a,b){return a.name.toLowerCase() > b.name.toLowerCase();});
+					} else {								// в обратном порядке
+						this.clearAllSorts();
+						this.taskVue.sort(function(a,b){return a.name.toLowerCase() < b.name.toLowerCase();});
+					}
+				},
+				sortByUser: function() {
+					var that = this;
+
+					if (this.sortStates.sortByUser == 0) {	// нажали первый раз
+						this.clearAllSorts();
+						this.sortStates.sortByUser = 1;
+
+						this.taskVue.sort(function(a,b){return that.infoById(a.user_id, 1).toLowerCase() > that.infoById(b.user_id, 1).toLowerCase();});
+					} else {								// в обратном порядке
+						this.clearAllSorts();
+						this.taskVue.sort(function(a,b){return that.infoById(a.user_id, 1).toLowerCase() < that.infoById(b.user_id, 1).toLowerCase();});
+					}
+				},
+				sortByPrice: function() {
+					var that = this;
+
+					if (this.sortStates.sortByPrice == 0) {	// нажали первый раз
+						this.clearAllSorts();
+						this.sortStates.sortByPrice = 1;
+
+						this.taskVue.sort(function(a,b){return a.time*that.infoById(a.user_id, 2)  < b.time*that.infoById(b.user_id, 2);});
+					} else {								// в обратном порядке
+						this.clearAllSorts();
+						this.taskVue.sort(function(a,b){return a.time*that.infoById(a.user_id, 2)  > b.time*that.infoById(b.user_id, 2);});
+					}
+				},
+				sortBy: function(byWhat) {
+					switch(byWhat) {
+						case 'time': return this.sortByHours();
+						case 'name': return this.sortByName();
+						case 'user': return this.sortByUser();
+						case 'price': return this.sortByPrice();
+					}
+				},
+				countAllTime: function() {	// выводим общее время всех задач
+					var allTime = 0;
+					for (var i=0; i<this.taskVue.length; i++) {
+						allTime+= Number(this.taskVue[i].time);
+					}
+					return allTime;
+				},
+				countAllPrice: function() {	// выводим общюю стоимость всех задач
+					var allPrice = 0;
+					for (var i=0; i<this.taskVue.length; i++) {
+						allPrice= allPrice + Number(this.taskVue[i].time*this.infoById(this.taskVue[i].user_id, 2));
+					}
+					return allPrice;
+				},
+				isTableChange: function() {	// были ли какие то изменения в таблице
+					if ( JSON.stringify(tasks) == JSON.stringify(this.taskVue)) {return false} else {return true}
+				},
+				saveChanges: function() {	// загружаем на сервер данные
+					var xhr = new XMLHttpRequest();
+					var url = "url";
+					xhr.open("POST", url, true);
+					xhr.setRequestHeader("Content-Type", "application/json");
+					xhr.onreadystatechange = function () {
+    					if (xhr.readyState === 4 && xhr.status === 200) {
+        					var json = JSON.parse(xhr.responseText);
+        					console.log('Успешно получено');
+    					}
+					};
+					var data = JSON.stringify(this.taskVue);
+					xhr.send(data);
+					console.log("Все сохранилось");	
+				}
+			}
+		});
+		app.createTaskStates();	// создает доп объект для понимания, когда строка редактируется, а когда нет
+	});
+
+
+		
+	</script>
+</head>
+<body>
+	<div id="app">
+	<button v-if="isTableChange()" @click="saveChanges()">Сохранить изменения в базе данных</button>
+	<p>Список работ</p>
+	<br>
+	<br>
+	<br>
+		<table>
+		<thead>
+			<td @click="sortBy('name')">
+				по Названию
+				<span v-if="sortStates.sortByName == 0">↓</span><span v-else>↑</span>
+			</td>
+			<td @click="sortBy('user')">
+				по Имени
+				<span v-if="sortStates.sortByUser == 0">↓</span><span v-else>↑</span>
+			</td>
+			<td @click="sortBy('time')">
+				по Часам
+				<span v-if="sortStates.sortByTime == 0">↓</span><span v-else>↑</span>
+			</td>
+			<td @click="sortBy('price')">
+				по Оплате
+				<span v-if="sortStates.sortByPrice == 0">↓</span><span v-else>↑</span>
+			</td>
+		</thead>
+			<tr v-for="oneTask in taskVue" :class="oneTask.id">
+				<td>
+					<span v-if="stateById(oneTask.id) == 0">{{oneTask.name || '------'}}</span>
+					<span v-else><input  @keyup.13="editTask(oneTask.id)" type="text" v-model="oneTask.name"></span>
+				</td>
+				<td>
+					<span v-if="stateById(oneTask.id) == 0">{{infoById(oneTask.user_id, 1)}}</span>
+					<span v-else>
+						<select v-model="oneTask.user_id">
+							<option v-for="user in usersVue" :value="user.id" v-html="user.name">
+							</option>
+						</select>
+					</span>
+				</td>
+				<td>
+					<span v-if="stateById(oneTask.id) == 0">{{oneTask.time}}</span>
+					<span v-else><input @keyup.13="editTask(oneTask.id)" type="text" v-model="oneTask.time"></span>
+				</td>
+				<td v-html="oneTask.time * infoById(oneTask.user_id, 2)"></td>
+				<td>
+					<button @click="editTask(oneTask.id)">{{editButtonNames[stateById(oneTask.id)]}}</button> 
+					<br>
+					<button @click="deleteTask(oneTask.id)">Удалить</button>
+				</td>
+			</tr>
+		</table>
+		<table class="table2">
+			<tr>
+				<td><input @keyup.13="createTask()" v-model="newTaskName" type="text" placeholder="Задача"></td>
+				<td><select v-model="newTaskPers" name="parent_id" id="1">
+					<option v-for="user in usersVue" :value="user.id" v-html="user.name"></option>
+				</select></td>
+				<td><input @keyup.13="createTask()" v-model="newTaskTime" type="number" placeholder="Время работы"></td>
+			</tr>
+		</table>
+		<button @click="createTask()">Добавить работу</button>
+<br><br>
+		<div>Общее кол-во работ: <span v-html="taskVue.length"></span></div>
+		<div>Общее время: <span v-html="countAllTime()"></span></div>
+		<div>Общая стоимость: <span v-html="countAllPrice()"></span></div>
+
+
+
+
+	</div>
+</body>
+</html>
